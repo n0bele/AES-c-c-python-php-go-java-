@@ -1,0 +1,2 @@
+sBuf string = "asdsad"
+decodeStr := mycrypt.AesDecrypt(sBuf)
