@@ -1,0 +1,6 @@
+int main()
+{
+	string sRet="ooxx";
+	string sEncrypt = CNewAes::cbc_encrypt(sRet.c_str(), "wodeshijiehenmei");
+	sRet = CNewAes::base64_encode((unsigned char *)sEncrypt.c_str(), sEncrypt.length());
+}
