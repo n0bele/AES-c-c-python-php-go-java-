@@ -1,1 +1,27 @@
+private String AesEncrypt(String content, String password) throws Exception {
+        String IVPARAMETER = "010101012345abcd";
+        // 创建AES秘钥
+        SecretKeySpec key = new SecretKeySpec(password.getBytes(), "AES/CBC/PKCS5PADDING");
+        // 创建密码器
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        // 初始化加密器
+        IvParameterSpec iv = new IvParameterSpec(IVPARAMETER.getBytes());
+        cipher.init(Cipher.ENCRYPT_MODE, key,iv);
+        // 加密
+        return toHex(cipher.doFinal(content.getBytes("UTF-8")));
+    }
+    private static String toHex(byte[] buf) {
+        final String HEX = "0123456789ABCDEF";
+        if (buf == null)
+            return "";
+        StringBuffer result = new StringBuffer(2 * buf.length);
+        for (int i = 0; i < buf.length; i++) {
+            result.append(HEX.charAt((buf[i] >> 4) & 0x0f)).append(
+                    HEX.charAt(buf[i] & 0x0f));
+        }
+        return result.toString();
+    }
 
+
+String SDate = "00xx";
+final String SEncty = AesEncrypt(SDate,"wodeshijiehenmei");
